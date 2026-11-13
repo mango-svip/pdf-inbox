@@ -1,0 +1,28 @@
+{
+  "port": 8631,
+  "bind": "127.0.0.1",
+  "printer": "PDFInbox",
+  "output_dir": "~/Documents/PDFInbox",
+  "template": "{now:%Y%m%d-%H%M%S}_{title}",
+  "max_title_len": 120,
+  "unique_suffix": true,
+  "index": true,
+  "post_command": null,
+
+  "routes": {
+    "PDFInbox-Invoice": {
+      "output_dir": "~/Documents/PDFInbox/发票",
+      "template": "{now:%Y%m}_{title}"
+    },
+    "PDFInbox-Report": {
+      "output_dir": "~/Documents/PDFInbox/报表",
+      "template": "{date}_{seq}_{title}"
+    }
+  },
+
+  "_templates_notes": [
+    "变量：{title} {now:strftime} {date} {time} {datetime} {seq} {job} {queue} {user} {host} {fmt} {pages} {uuid}",
+    "IPP 不提供 URL 与应用名，{url}/{app} 会渲染为空串",
+    "seq 为当日递增序号，用于给同一网页反复打印时排重"
+  ]
+}
